@@ -9,67 +9,61 @@ import java.util.Collections;
 public class Tests {
 
     @Test
-    public void add(){
+    public void addHuman(){
         AddressBook book = new AddressBook();
-        Assert.assertTrue(book.add("Овсянников","Науки",47,101));
-        Assert.assertFalse(book.add("Овсянников","Науки",47,1110));
-        Assert.assertTrue(book.add("Мазнин","Политехническая",17,2));
-        Assert.assertFalse(book.add("Овсянников","Политехническая",17,2));
-        Assert.assertTrue(book.add("Черныш","Политехническая",17,2));
+        Assert.assertTrue(book.addHuman("Овсянников","Науки",47,101));
+        Assert.assertFalse(book.addHuman("Овсянников","Науки",47,1110));
+        Assert.assertTrue(book.addHuman("Мазнин","Политехническая",17,2));
+        Assert.assertFalse(book.addHuman("Овсянников","Политехническая",17,2));
+        Assert.assertTrue(book.addHuman("Черныш","Политехническая",17,2));
     }
 
     @Test
-    public void delete(){
+    public void deleteHuman(){
         AddressBook book = new AddressBook();
-        book.add("Овсянников","Науки",47,101);
-        book.add("Мазнин","Политехническая",17,2);
-        book.add("Черныш","Политехническая",17,2);
+        book.addHuman("Овсянников","Науки",47,101);
 
-        Assert.assertFalse(book.delete("Попов"));
-        Assert.assertTrue(book.delete("Овсянников"));
-        Assert.assertFalse(book.delete("Овсянников"));
+        Assert.assertFalse(book.deleteHuman("Попов"));
+        Assert.assertTrue(book.deleteHuman("Овсянников"));
+        Assert.assertFalse(book.deleteHuman("Овсянников"));
     }
 
     @Test
-    public void showAddress(){
+    public void findAddress(){
         AddressBook book = new AddressBook();
-        book.add("Овсянников","Науки",47,101);
-        book.add("Мазнин","Политехническая",17,2);
-        book.add("Попов","Гражданский",34,85);
+        book.addHuman("Овсянников","Науки",47,101);
+        book.addHuman("Мазнин","Политехническая",17,2);
 
-        Assert.assertEquals("Науки 47 101",book.showAddress("Овсянников"));
-        Assert.assertEquals("Политехническая 17 2",book.showAddress("Мазнин"));
-        Assert.assertNull(book.showAddress("Картелев"));
+        Assert.assertEquals("Науки 47 101",book.findAddress("Овсянников"));
+        Assert.assertEquals("Политехническая 17 2",book.findAddress("Мазнин"));
+        Assert.assertNull(book.findAddress("Картелев"));
     }
 
     @Test
     public void changeAddress(){
         AddressBook book = new AddressBook();
-        book.add("Овсянников","Науки",47,101);
-        book.add("Мазнин","Политехническая",17,2);
-        book.add("Попов","Гражданский",34,85);
+        book.addHuman("Овсянников","Науки",47,101);
 
-        final String address = book.showAddress("Овсянников");
+        final String address = book.findAddress("Овсянников");
         Assert.assertFalse(book.changeAddress("Овсянников","Науки",47,101));
         Assert.assertTrue(book.changeAddress("Овсянников","Науки",45,101));
-        Assert.assertNotEquals(address,book.showAddress("Овсянников"));
+        Assert.assertNotEquals(address,book.findAddress("Овсянников"));
     }
 
     @Test
-    public void showPersons(){
+    public void findPersons(){
         AddressBook book = new AddressBook();
-        book.add("Овсянников","Науки",47,101);
-        book.add("Мазнин","Тихорецкий",34,2);
-        book.add("Попов","Гражданский",34,85);
-        book.add("Алтухов","Науки",64,74);
-        book.add("Кришталь","Науки",47,52);
-        book.add("Железняк","Тихорецкий",34,85);
+        book.addHuman("Овсянников","Науки",47,101);
+        book.addHuman("Мазнин","Тихорецкий",34,2);
+        book.addHuman("Алтухов","Науки",64,74);
+        book.addHuman("Кришталь","Науки",47,52);
+        book.addHuman("Железняк","Тихорецкий",34,85);
 
-        Assert.assertEquals(Arrays.asList("Овсянников", "Алтухов", "Кришталь"),book.showPersons("Науки"));
-        Assert.assertEquals(Collections.emptyList(),book.showPersons("Бутлерова"));
-        Assert.assertNotEquals(Arrays.asList("Овсянников", "Алтухов", "Кришталь"),book.showPersons("Науки",47));
-        Assert.assertEquals(Arrays.asList("Овсянников", "Кришталь"),book.showPersons("Науки",47));
-        Assert.assertEquals(Collections.emptyList(),book.showPersons("Тихорецкий",48));
-        Assert.assertEquals(book.showPersons("Тихорецкий"),book.showPersons("Тихорецкий",34));
+        Assert.assertEquals(Arrays.asList("Овсянников", "Алтухов", "Кришталь"),book.findPersons("Науки"));
+        Assert.assertEquals(Collections.emptyList(),book.findPersons("Бутлерова"));
+        Assert.assertNotEquals(Arrays.asList("Овсянников", "Алтухов", "Кришталь"),book.findPersons("Науки",47));
+        Assert.assertEquals(Arrays.asList("Овсянников", "Кришталь"),book.findPersons("Науки",47));
+        Assert.assertEquals(Collections.emptyList(),book.findPersons("Тихорецкий",48));
+        Assert.assertEquals(book.findPersons("Тихорецкий"),book.findPersons("Тихорецкий",34));
     }
 }
