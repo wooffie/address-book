@@ -10,7 +10,7 @@ public class Tests {
 
     @Test
     public void addHuman(){
-        AddressBook book = new AddressBook();
+        final AddressBook book = new AddressBook();
         Assert.assertTrue(book.addHuman("Овсянников","Науки",47,101));
         Assert.assertFalse(book.addHuman("Овсянников","Науки",47,1110));
         Assert.assertTrue(book.addHuman("Мазнин","Политехническая",17,2));
@@ -20,7 +20,7 @@ public class Tests {
 
     @Test
     public void deleteHuman(){
-        AddressBook book = new AddressBook();
+        final AddressBook book = new AddressBook();
         book.addHuman("Овсянников","Науки",47,101);
 
         Assert.assertFalse(book.deleteHuman("Попов"));
@@ -30,7 +30,7 @@ public class Tests {
 
     @Test
     public void findAddress(){
-        AddressBook book = new AddressBook();
+        final AddressBook book = new AddressBook();
         book.addHuman("Овсянников","Науки",47,101);
         book.addHuman("Мазнин","Политехническая",17,2);
 
@@ -41,7 +41,7 @@ public class Tests {
 
     @Test
     public void changeAddress(){
-        AddressBook book = new AddressBook();
+        final AddressBook book = new AddressBook();
         book.addHuman("Овсянников","Науки",47,101);
         final String address = book.findAddress("Овсянников");
 
@@ -52,7 +52,7 @@ public class Tests {
 
     @Test
     public void findPersons(){
-        AddressBook book = new AddressBook();
+        final AddressBook book = new AddressBook();
         book.addHuman("Овсянников","Науки",47,101);
         book.addHuman("Мазнин","Тихорецкий",34,2);
         book.addHuman("Алтухов","Науки",64,74);
