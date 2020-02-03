@@ -77,7 +77,7 @@ public class AddressBook {
 
     /**
      * Возвращает адрес заданного человека.
-     * Если человека с такой фамилей есть возвращает null.
+     * Если человека с такой фамилей нет возвращает null.
      */
     public String findAddress(String body){
         for(Person i : data){
