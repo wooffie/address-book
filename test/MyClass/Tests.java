@@ -43,8 +43,8 @@ public class Tests {
     public void changeAddress(){
         AddressBook book = new AddressBook();
         book.addHuman("Овсянников","Науки",47,101);
-
         final String address = book.findAddress("Овсянников");
+
         Assert.assertFalse(book.changeAddress("Овсянников","Науки",47,101));
         Assert.assertTrue(book.changeAddress("Овсянников","Науки",45,101));
         Assert.assertNotEquals(address,book.findAddress("Овсянников"));

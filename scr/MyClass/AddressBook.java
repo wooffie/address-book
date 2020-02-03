@@ -9,6 +9,7 @@ import java.util.List;
 public class AddressBook {
 
     private final List<Person> data = new ArrayList<>();
+    // private final List<Person> data = new LinkedList<>();
 
     private static class Person {
         final String name , street;
