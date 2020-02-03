@@ -127,6 +127,6 @@ public class AddressBook {
         for(Person i: data){
             list.add(i.name + " " +  i.street + " " + i.number + " " + i.flat );
         }
-        return StringUtils.join(list, " | ");
+        return StringUtils.join(list, "\n");
     }
 }
