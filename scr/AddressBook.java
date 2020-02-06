@@ -2,7 +2,7 @@ import java.util.*;
 
 
 public class AddressBook {
-    private Map<String, Address> data = new HashMap<>();
+    private final Map<String, Address> data = new HashMap<>();
 
     public Map<String, Address> getData() {
         return data;
