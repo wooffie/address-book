@@ -1,6 +1,3 @@
-package address.book;
-
-
 import org.junit.Test;
 
 import java.util.*;
