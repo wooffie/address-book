@@ -1,6 +1,8 @@
 package MyClass;
 
 
+import com.sun.deploy.util.StringUtils;
+
 import java.util.*;
 
 public class AddressBookMap {
@@ -121,6 +123,10 @@ public class AddressBookMap {
      */
     @Override
     public String toString(){
-            return data.toString();
+        final List<String> list = new ArrayList<>();
+        for(String i: data.keySet()){
+            list.add(i + " " + data.get(i).toString());
+        }
+        return StringUtils.join(list, "\n");
         }
     }

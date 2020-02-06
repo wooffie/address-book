@@ -9,7 +9,6 @@ import java.util.List;
 public class AddressBook {
 
     private final List<Person> data = new ArrayList<>();
-    // private final List<Person> data = new LinkedList<>();
 
     private static class Person {
         final String name , street;
@@ -20,6 +19,10 @@ public class AddressBook {
             this.street = street;
             this.number = number;
             this.flat = flat;
+        }
+
+        private String addressToString(){
+            return street + " " + number + " " + flat;
         }
     }
 
@@ -83,7 +86,7 @@ public class AddressBook {
     public String findAddress(String body){
         for(Person i : data){
             if(i.name.equals(body)){
-                return i.street + " " + i.number + " " + i.flat;
+                return i.addressToString();
             }
         }
         return null;
@@ -125,7 +128,7 @@ public class AddressBook {
     public String toString(){
         final List<String> list = new ArrayList<>();
         for(Person i: data){
-            list.add(i.name + " " +  i.street + " " + i.number + " " + i.flat );
+            list.add(i.name + " " + i.addressToString());
         }
         return StringUtils.join(list, "\n");
     }
