@@ -5,16 +5,16 @@
 class Address {
     private final String street;
     private final int number;
-    private final int flat;
+    private final int apartment;
 
-    Address(String street, int number, int flat) {
+    Address(String street, int number, int apartment) {
         this.street = street;
         this.number = number;
-        this.flat = flat;
+        this.apartment = apartment;
     }
 
-    public int getFlat() {
-        return flat;
+    public int getApartment() {
+        return apartment;
     }
 
     public int getNumber() {
@@ -27,7 +27,7 @@ class Address {
 
     @Override
     public String toString() {
-        return street + " " + number + " " + flat;
+        return street + " " + number + " " + apartment;
     }
 
     @Override
@@ -36,7 +36,7 @@ class Address {
         int result = 1;
         result = result * prime + street.hashCode();
         result = result * prime + number;
-        result = result * prime + flat;
+        result = result * prime + apartment;
         return result;
     }
 
@@ -49,6 +49,6 @@ class Address {
             return false;
         }
         Address other = (Address) o;
-        return (other.street.equals(street)) && (other.number == number) && (other.flat == flat);
+        return (other.street.equals(street)) && (other.number == number) && (other.apartment == apartment);
     }
 }

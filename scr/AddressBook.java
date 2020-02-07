@@ -13,13 +13,11 @@ public class AddressBook {
      * Возвращает true, если человек был успешно добавлен,
      * и false, если человек с таким именем уже есть в адресной книге.
      */
-    public boolean addHuman(String body, Address domicile) {
-        for (String name : data.keySet()) {
-            if (name.equals(body)) {
-                return false;
-            }
+    public boolean addHuman(String name, Address address) {
+        if (data.containsKey(name)) {
+            return false;
         }
-        data.put(body, domicile);
+        data.put(name, address);
         return true;
     }
 
@@ -28,12 +26,10 @@ public class AddressBook {
      * Возвращает true, если человек был успешно удалён,
      * и false, если человек с таким именем отсутствовал в адресной книге.
      */
-    public boolean deleteHuman(String body) {
-        for (String name : data.keySet()) {
-            if (name.equals(body)) {
-                data.remove(name);
-                return true;
-            }
+    public boolean deleteHuman(String name) {
+        if (data.containsKey(name)) {
+            data.remove(name);
+            return true;
         }
         return false;
     }
@@ -45,15 +41,10 @@ public class AddressBook {
      * и false, если человек с таким именем отсутствовал  в адресной книге,
      * либо он уже закреплён за данным адресом.
      */
-    public boolean changeAddress(String body, Address domicile) {
-        for (String name : data.keySet()) {
-            if (name.equals(body)) {
-                if (domicile == data.get(name)) {
-                    return false;
-                }
-                data.put(name, domicile);
-                return true;
-            }
+    public boolean changeAddress(String name, Address address) {
+        if (data.containsKey(name) && address != data.get(name)) {
+            data.put(name, address);
+            return true;
         }
         return false;
     }
@@ -62,38 +53,33 @@ public class AddressBook {
      * Возвращает адрес заданного человека.
      * Если человека с такой фамилей нет возвращает null.
      */
-    public Address findAddress(String body) {
-        for (String name : data.keySet()) {
-            if (name.equals(body)) {
-                return data.get(name);
-            }
-        }
-        return null;
+    public Address findAddress(String name) {
+        return data.get(name);
     }
 
     /**
-     * Возвращает список людей живущих на заданной улице.
+     * Возвращает множество людей живущих на заданной улице.
      * Если таких нет, то возвращает пустой список.
      */
     public Set<String> findPersons(String street) {
         final Set<String> list = new HashSet<>();
-        for (String name : data.keySet()) {
-            if (data.get(name).getStreet().equals(street)) {
-                list.add(name);
+        for (Map.Entry<String, Address> entry : data.entrySet()) {
+            if (entry.getValue().getStreet().equals(street)) {
+                list.add(entry.getKey());
             }
         }
         return list;
     }
 
     /**
-     * Возвращает список людей живущих в заданном доме.
+     * Возвращает множество людей живущих в заданном доме.
      * Если таких нет, то возвращает пустой список.
      */
     public Set<String> findPersons(String street, int number) {
         final Set<String> list = new HashSet<>();
-        for (String name : data.keySet()) {
-            if (data.get(name).getStreet().equals(street) && data.get(name).getNumber() == number) {
-                list.add(name);
+        for (Map.Entry<String, Address> entry : data.entrySet()) {
+            if (entry.getValue().getStreet().equals(street) && entry.getValue().getNumber() == number) {
+                list.add(entry.getKey());
             }
         }
         return list;
