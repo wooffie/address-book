@@ -115,14 +115,11 @@ public class AddressBook {
         if (this == o) {
             return true;
         }
-        if (o == null) {
-            return false;
+        if (o instanceof AddressBook) {
+            AddressBook other = (AddressBook) o;
+            return data.equals(other.data);
         }
-        if (getClass() != o.getClass()) {
-            return false;
-        }
-        AddressBook other = (AddressBook) o;
-        return data.equals(other.data);
+        return false;
     }
 
 }

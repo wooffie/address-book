@@ -45,10 +45,10 @@ class Address {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass() || hashCode() != o.hashCode()) {
-            return false;
+        if (o instanceof Address) {
+            Address other = (Address) o;
+            return (other.street.equals(street)) && (other.number == number) && (other.apartment == apartment);
         }
-        Address other = (Address) o;
-        return (other.street.equals(street)) && (other.number == number) && (other.apartment == apartment);
+        return false;
     }
 }
