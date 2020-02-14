@@ -1,3 +1,5 @@
+package ru.spbstu.addressbook;
+
 import org.junit.Test;
 
 import java.util.*;
