@@ -45,7 +45,7 @@ public class Tests {
         final Address newAddress = new Address("Науки", 39, 1231);
         assertFalse(book.changeAddress("Овсянников", newAddress)); // изменяем не записанного человека
         assertTrue(book.addHuman("Овсянников", oldAddress)); // добавляем человека
-        final Map<String, Address> dataClone = new HashMap<>(book.getData());
+        final Map<String, Address> dataClone = book.getData();
         assertEquals(book.getData(), dataClone);  // сравниваем данные
         assertTrue(book.changeAddress("Овсянников", newAddress));  // изменяем адрес
         assertFalse(book.changeAddress("Овсянников", newAddress));  // пытаемся изменить адрес на такой же

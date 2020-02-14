@@ -4,8 +4,13 @@ import java.util.*;
 public class AddressBook {
     private final Map<String, Address> data = new HashMap<>();
 
+    /**
+     * Вернуть базу данных.
+     * (Я решил сделать этот метод public , поэтому передаю новый HashMap , а не ссылку.)
+     */
     public Map<String, Address> getData() {
-        return data;
+        return new HashMap<>(data);
+        // это сделано для того , чтобы у пользователя не было ссылки на data и он работал с методами класса
     }
 
     /**
@@ -71,10 +76,6 @@ public class AddressBook {
         return list;
     }
 
-    /**
-     * Возвращает множество людей живущих в заданном доме.
-     * Если таких нет, то возвращает пустой список.
-     */
     public Set<String> findPersons(String street, int number) {
         final Set<String> list = new HashSet<>();
         for (Map.Entry<String, Address> entry : data.entrySet()) {
@@ -87,7 +88,7 @@ public class AddressBook {
 
 
     /**
-     * Вывод в String
+     * Вывод в String.
      */
     @Override
     public String toString() {
@@ -98,11 +99,17 @@ public class AddressBook {
         return String.join("\n", list);
     }
 
+    /**
+     * Хаш-код.
+     */
     @Override
     public int hashCode() {
         return data.hashCode();
     }
 
+    /**
+     * Равенство экземпляра класса и другого объекта.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
