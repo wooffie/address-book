@@ -1,9 +1,6 @@
 package ru.spbstu.addressbook;
 
-/**
- * Класс адреса, который хранит:
- * улицу, дом, квартиру.
- */
+
 class Address {
     private final String street;
     private final int number;
