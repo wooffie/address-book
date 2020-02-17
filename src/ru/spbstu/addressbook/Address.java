@@ -6,7 +6,7 @@ class Address {
     private final int number;
     private final int apartment;
 
-    Address(String street, int number, int apartment) {
+    public Address(String street, int number, int apartment) {
         this.street = street;
         this.number = number;
         this.apartment = apartment;
